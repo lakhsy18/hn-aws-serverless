@@ -60,5 +60,12 @@ It will provide the base URL to invoke the API. Append /hello to the base URL to
 
 Run `terraform destroy` to destroy all resources again.
 
+### GibHub Workflows 
+
+On a pull request and push to 'dev' branch will trigger the GibHub workflow test.yml which runs a test to create
+a lambda function using lambda-function module. 
+
+On a pull request and push to 'master' branch will run the aws-deployment.yml and updates the infrastructure in AWS. 
+
 
 
