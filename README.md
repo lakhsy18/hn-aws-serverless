@@ -56,6 +56,9 @@ Run `terraform apply` to create the resources.
 You will see a plan of the changes and Terraform will prompt you for approval to actually apply the changes.
 It will provide the base URL to invoke the API. Append /hello to the base URL to get response "hello"
 
+API can be accessed now with the URL
+https://ucjxvlxo07.execute-api.eu-central-1.amazonaws.com/serverless_lambda_stage/hello
+
 ### Destroying the example
 
 Run `terraform destroy` to destroy all resources again.
