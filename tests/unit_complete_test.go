@@ -49,19 +49,4 @@ func TestUnitComplete(t *testing.T) {
 	terraform.InitAndApply(t, terraformOptions)
 	// stdout := terraform.Plan(t, terraformOptions)
 
-	// resourceCount := terraform.GetResourceCount(t, stdout)
-	// assert.Equal(t, 0, resourceCount.Add, "No resources should have been created. Found %d instead.", resourceCount.Add)
-	// assert.Equal(t, 0, resourceCount.Change, "No resources should have been changed. Found %d instead.", resourceCount.Change)
-	// assert.Equal(t, 0, resourceCount.Destroy, "No resources should have been destroyed. Found %d instead.", resourceCount.Destroy)
-
-	outputs := terraform.OutputAll(t, terraformOptions)
-	functionOutputs := outputs["all"].(map[string]interface{})["function"].(map[string]interface{})
-
-	//Assert if outputs match the desired variable inputs
-	assert.Equal(t, functionName, functionOutputs["function_name"])
-	// assert.Equal(t, description, functionOutputs["description"])
-	// assert.Equal(t, handler, functionOutputs["handler"])
-	// assert.Equal(t, runtime, functionOutputs["runtime"])
-	// assert.Equal(t, memorySize, functionOutputs["memory_size"])
-	// assert.Equal(t, timeout, functionOutputs["timeout"])
 }
