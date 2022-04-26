@@ -1,13 +1,13 @@
 # workflow name
-name: CI
+name: test
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
+  # Triggers the workflow on push or pull request events but only for the dev branch
   push:
-    branches: [ master ]
+    branches: [ dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ dev ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -31,30 +31,26 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v3
 
+      - uses: actions/setup-go@v1
+        with:
+          go-version: 1.14
+
       - uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.1.8
 
-      # Initialize terraform
-      - name: Terraform init
-        id: init
-        env:
-          TF_ACTION_WORKING_DIR: '.'
-        run: terraform init
+      - name: Set ssh keys for github remote download
+        working-directory: tests/
+        run: |
+          mkdir ~/.ssh
+          echo "${{ secrets.SSH_GITHUB }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
 
-      # Validate terraform configuration
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate -no-color
+      - name: Setup Dependencies
+        working-directory: tests/
+        run:  go get -v -t -d && go mod tidy
 
-      # Terraform plan generates a plan of infra changes that will be applied.
-      - name: Terraform Plan
-        id: Plan
-        run: terraform plan -no-color
-        env:
-          TF_ACTION_WORKING_DIR: '.'
-      # Terraform apply provisions the infrastructure
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-        env:
-          TF_ACTION_WORKING_DIR: '.'
+      - name: Run Go Tests
+        working-directory: tests/
+        run: |
+          go test -v
