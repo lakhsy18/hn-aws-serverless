@@ -7,7 +7,7 @@ import (
 
 	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
-	// "github.com/stretchr/testify/assert"
+	//"github.com/stretchr/testify/assert"
 )
 
 func TestUnitComplete(t *testing.T) {
@@ -46,28 +46,7 @@ func TestUnitComplete(t *testing.T) {
 	defer terraform.Destroy(t, terraformOptions)
 
 	// This will run `terraform init` and `terraform apply` and fail the test if there are any errors
-	// This will run `terraform init` and `terraform apply` and fail the test if there are any errors
 	terraform.InitAndApply(t, terraformOptions)
-	//terraform.InitAndPlan(t, terraformOptions)
-	//terraform.ApplyAndIdempotent(t, terraformOptions)
-	// terraform.Apply(t, terraformOptions)
-
 	// stdout := terraform.Plan(t, terraformOptions)
 
-	// resourceCount := terraform.GetResourceCount(t, stdout)
-	// assert.Equal(t, 0, resourceCount.Add, "No resources should have been created. Found %d instead.", resourceCount.Add)
-	// assert.Equal(t, 0, resourceCount.Change, "No resources should have been changed. Found %d instead.", resourceCount.Change)
-	// assert.Equal(t, 0, resourceCount.Destroy, "No resources should have been destroyed. Found %d instead.", resourceCount.Destroy)
-
-	// outputs := terraform.OutputAll(t, terraformOptions)
-	// functionOutputs := outputs["all"].(map[string]interface{})["function"].(map[string]interface{})
-
-	// Assert if outputs match the desired variable inputs
-	// assert.Equal(t, functionName, functionOutputs["function_name"])
-	// assert.Equal(t, description, functionOutputs["description"])
-	// assert.Equal(t, handler, functionOutputs["handler"])
-	// assert.Equal(t, runtime, functionOutputs["runtime"])
-	// assert.Equal(t, publish, functionOutputs["publish"])
-	// assert.Equal(t, memorySize, functionOutputs["memory_size"])
-	// assert.Equal(t, timeout, functionOutputs["timeout"])
 }

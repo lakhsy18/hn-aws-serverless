@@ -38,6 +38,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.1.8
+          terraform_wrapper: false
 
       - name: Set ssh keys for github remote download
         working-directory: tests/
