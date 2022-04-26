@@ -2,9 +2,9 @@
 
 ## Basic usage
 
-The code in main.tf shows how to deploy a Python function to AWS Lambda and 
-integrate it with API Gateway.Since each Lambda function requires an attached Execution Role, we also
-deploy a new IAM Role and attach it to the function. The code also expects a
+The code in main.tf shows how to deploy a Python function to AWS Lambda and
+integrate it with API Gateway.Since each Lambda function requires an attached Execution Role, a new role is
+deployed and attached it to the lambda function. The code also expects a
 zip archive that already exists. If you'd like to build the archive through
 terraform, please see the code in the main.tf file.
 
@@ -23,7 +23,7 @@ module "lambda-function" {
 }
 ```
 
-using module "api_gateway" to create and add integration. 
+using module "api_gateway" to create and add integration.
 ```hcl
 module "api_gateway" {
   source = "./modules/api-gateway"
@@ -38,8 +38,8 @@ module "api_gateway" {
 ### Cloning the repository
 
 ``` bash
-git clone https://github.com/mineiros-io/terraform-aws-lambda-function.git
-cd terraform-aws-lambda-function/examples/python-function
+git clone https://github.com/lakhsy18/hn-aws-serverless.git
+cd hn-aws-serverless
 ```
 
 ### Initializing Terraform
@@ -54,6 +54,7 @@ Run `terraform plan` to see a plan of the changes.
 
 Run `terraform apply` to create the resources.
 You will see a plan of the changes and Terraform will prompt you for approval to actually apply the changes.
+It will provide the base URL to invoke the API. Append /hello to the base URL to get response "hello"
 
 ### Destroying the example
 

@@ -20,7 +20,7 @@ A terraform module for deploying AWS Serverless lambda function.
 - **Standard Module Features**:
 
   Deploy a local deployment package to AWS Lambda
-  
+
   Deploy a deployment package located in S3 to AWS Lambda
 
 - **Extended Module Features**:
@@ -67,29 +67,6 @@ See variables.tf and outputs.tf for details.
 
   Default is `"[]"`.
 
-- [**`aliases`**](#var-aliases): *(Optional `map(alias)`)*<a name="var-aliases"></a>
-
-  A map of aliases (keyed by the alias name) that will be created for the Lambda function. If `version` is omitted, the alias will automatically point to `$LATEST`.
-
-  Default is `{}`.
-
-  Each `alias` object in the map accepts the following attributes:
-
-  - [**`description`**](#attr-aliases-description): *(Optional `string`)*<a name="attr-aliases-description"></a>
-
-    Description of the alias.
-
-  - [**`function_version`**](#attr-aliases-function_version): *(Optional `string`)*<a name="attr-aliases-function_version"></a>
-
-    Lambda function version for which you are creating the alias.
-    Pattern: `(\$LATEST|[0-9]+)`.
-
-    Default is `"$LATEST"`.
-
-  - [**`additional_version_weights`**](#attr-aliases-additional_version_weights): *(Optional `map(string)`)*<a name="attr-aliases-additional_version_weights"></a>
-
-    A map that defines the proportion of events that should be sent to different versions of a lambda function.
-
 - [**`description`**](#var-description): *(Optional `string`)*<a name="var-description"></a>
 
   A description of what the Lambda function does.
@@ -100,12 +77,6 @@ See variables.tf and outputs.tf for details.
   This allows you to use aliases to refer to execute different versions of the function in different environments.
 
   Default is `false`.
-
-- [**`function_tags`**](#var-function_tags): *(Optional `map(string)`)*<a name="var-function_tags"></a>
-
-  A map of tags that will be applied to the function.
-
-  Default is `{}`.
 
 - [**`layer_arns`**](#var-layer_arns): *(Optional `set(string)`)*<a name="var-layer_arns"></a>
 
@@ -210,7 +181,7 @@ See variables.tf and outputs.tf for details.
     For CloudWatch Events, this should be the ARN of the CloudWatch Events Rule.
     For API Gateway, this should be the ARN of the API, as described in
     https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html.
-    
+
 #### Module Configuration
 
 - [**`module_enabled`**](#var-module_enabled): *(Optional `bool`)*<a name="var-module_enabled"></a>
@@ -219,13 +190,6 @@ See variables.tf and outputs.tf for details.
 
   Default is `true`.
 
-- [**`module_tags`**](#var-module_tags): *(Optional `map(string)`)*<a name="var-module_tags"></a>
-
-  A map of tags that will be applied to all created resources that accept tags.
-  Tags defined with 'module_tags' can be overwritten by resource-specific tags.
-
-  Default is `{}`.
-
 ## Module Outputs
 
 The following attributes are exported by the module:
@@ -233,10 +197,6 @@ The following attributes are exported by the module:
 - [**`function`**](#output-function): *(`object(function)`)*<a name="output-function"></a>
 
   All outputs of the `aws_lambda_function` resource."
-
-- [**`aliases`**](#output-aliases): *(`map(alias)`)*<a name="output-aliases"></a>
-
-  A map of all created `aws_lambda_alias` resources keyed by name.
 
 - [**`permissions`**](#output-permissions): *(`list(permission)`)*<a name="output-permissions"></a>
 
@@ -252,23 +212,16 @@ The following attributes are exported by the module:
   A map of all module arguments. Omitted optional arguments will be
   represented with their actual defaults.
 
-- [**`module_tags`**](#output-module_tags): *(`map(string)`)*<a name="output-module_tags"></a>
-
-  The map of tags that are being applied to all created resources that
-  accept tags.
-
 ## External Documentation
 
 ### AWS Lambda Documentation
 
 - General Documentation: https://docs.aws.amazon.com/lambda/latest/dg/welcome.html
 - Functions: https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html
-- Aliases: https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html
 
 ### Terraform AWS Provider Documentation
 
 - https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function
-- https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_alias
 - https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission
 
 
